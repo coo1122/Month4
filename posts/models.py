@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -15,6 +16,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     image = models.ImageField(null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='posts')
     title = models.CharField(max_length=156)
     content = models.CharField(max_length=356)
     rate = models.IntegerField(null=True)
